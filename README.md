@@ -134,4 +134,21 @@ This step will require latex but can easily be built with
 
    make latexpdf
    open build/latex/Mypackage.pdf
+```
 
+# readthedocs.io
+
+readthedocs' preferred way are .readthedocs.yaml, which needs to live in the root folder. Following https://docs.readthedocs.io/en/stable/config-file/v2.html, this is how the file now looks like:
+
+```
+version: 2
+
+sphinx:
+  configuration: docs/conf.py
+
+python:
+  version: 3.8
+  install:
+    - requirements: requirements.txt
+    - requirements: docs/requirements.txt
+```
