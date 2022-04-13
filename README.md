@@ -32,93 +32,56 @@ First thing we need to do in order to use sphinx is to install it
 
 Next we will create a the directory where we will put the documentation
 
-.. code::
-
+```
    mkdir doc
    cd doc
+```
 
 Now we run the `sphinx-quickstart` which is the first step in generating documentation.
-This will ask you some questions, and I will reply as follows
 
-.. code::
-
-
+```
     (venv) user@linux:~/sphinx-tutorial/doc$ sphinx-quickstart 
-    Welcome to the Sphinx 1.7.6 quickstart utility.
+Welcome to the Sphinx 4.5.0 quickstart utility.
 
-    Please enter values for the following settings (just press Enter to
-    accept a default value, if one is given in brackets).
+Please enter values for the following settings (just press Enter to
+accept a default value, if one is given in brackets).
 
-    Selected root path: .
+Selected root path: .
 
-    You have two options for placing the build directory for Sphinx output.
-    Either, you use a directory "_build" within the root path, or you separate
-    "source" and "build" directories within the root path.
-    > Separate source and build directories (y/n) [n]: y
+You have two options for placing the build directory for Sphinx output.
+Either, you use a directory "_build" within the root path, or you separate
+"source" and "build" directories within the root path.
+> Separate source and build directories (y/n) [n]: n
 
-    Inside the root directory, two more directories will be created; "_templates"
-    for custom HTML templates and "_static" for custom stylesheets and other static
-    files. You can enter another prefix (such as ".") to replace the underscore.
-    > Name prefix for templates and static dir [_]: 
+The project name will occur in several places in the built documentation.
+> Project name: Mypackage
+> Author name(s): Tyrone Lee
+> Project release []: 1
 
-    The project name will occur in several places in the built documentation.
-    > Project name: Mypackage
-    > Author name(s): Tyrone Lee
-    > Project release []: 1.0
+If the documents are to be written in a language other than English,
+you can select a language here by its language code. Sphinx will then
+translate text that it generates into that language.
 
-    If the documents are to be written in a language other than English,
-    you can select a language here by its language code. Sphinx will then
-    translate text that it generates into that language.
+For a list of supported codes, see
+https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-language.
+> Project language [en]:
 
-    For a list of supported codes, see
-    http://sphinx-doc.org/config.html#confval-language.
-    > Project language [en]: 
+Creating file /home/projects/sphinx-tutorial/docs/conf.py.
+Creating file /home/projects/sphinx-tutorial/docs/index.rst.
+Creating file /home/projects/sphinx-tutorial/docs/Makefile.
+Creating file /home/projects/sphinx-tutorial/docs/make.bat.
 
-    The file name suffix for source files. Commonly, this is either ".txt"
-    or ".rst".  Only files with this suffix are considered documents.
-    > Source file suffix [.rst]: 
+Finished: An initial directory structure has been created.
 
-    One document is special in that it is considered the top node of the
-    "contents tree", that is, it is the root of the hierarchical structure
-    of the documents. Normally, this is "index", but if your "index"
-    document is a custom template, you can also set this to another filename.
-    > Name of your master document (without suffix) [index]: 
-
-    Sphinx can also add configuration for epub output:
-    > Do you want to use the epub builder (y/n) [n]: 
-    Indicate which of the following Sphinx extensions should be enabled:
-    > autodoc: automatically insert docstrings from modules (y/n) [n]: y
-    > doctest: automatically test code snippets in doctest blocks (y/n) [n]: 
-    > intersphinx: link between Sphinx documentation of different projects (y/n) [n]: y
-    > todo: write "todo" entries that can be shown or hidden on build (y/n) [n]: 
-    > coverage: checks for documentation coverage (y/n) [n]: 
-    > imgmath: include math, rendered as PNG or SVG images (y/n) [n]: 
-    > mathjax: include math, rendered in the browser by MathJax (y/n) [n]: y
-    > ifconfig: conditional inclusion of content based on config values (y/n) [n]: 
-    > viewcode: include links to the source code of documented Python objects (y/n) [n]: y
-    > githubpages: create .nojekyll file to publish the document on GitHub pages (y/n) [n]:
-
-    A Makefile and a Windows command file can be generated for you so that you
-    only have to run e.g. `make html' instead of invoking sphinx-build
-    directly.
-    > Create Makefile? (y/n) [y]: 
-    > Create Windows command file? (y/n) [y]: n
-
-    Creating file ./source/conf.py.
-    Creating file ./source/index.rst.
-    Creating file ./Makefile.
-
-    Finished: An initial directory structure has been created.
-
-    You should now populate your master file ./source/index.rst and create other documentation
-    source files. Use the Makefile to build the docs, like so:
-       make builder
-    where "builder" is one of the supported builders, e.g. html, latex or linkcheck.
+You should now populate your master file /home/daedalus/projects/sphinx-tutorial/docs/index.rst and create other documentation
+source files. Use the Makefile to build the docs, like so:
+   make builder
+where "builder" is one of the supported builders, e.g. html, latex or linkcheck.
 ```
 You can look at your documentation by running
 
-```
 
+```
    make html
    python -m http.server
 ```
@@ -136,8 +99,9 @@ Now we will make the documentation for our python package
 
 If you run `make html` now you will get a warning saying "Unexpected section title",
 and this is because I have documented the code using the numpy style, which
-is not default. Open `source/conf.py` and add `'sphinx.ext.napoleon'` to the list
-called `extensions`. Let us also change the html theme.
+is not default. Open `source/conf.py` and add the extenstion `'sphinx.ext.napoleon'` to the list
+called `extensions`. The HTML theme and other options can also be selected, see 
+https://www.sphinx-doc.org/en/master/usage/quickstart.html
 Scroll down and set `html_theme = 'sphinx_rtd_theme'`, and run `pip install sphinx-rtd-theme`.
 
 Now you can run  ````make html````.
